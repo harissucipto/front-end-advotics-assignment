@@ -10,6 +10,10 @@
   justify-content: space-between;
   flex-wrap: wrap;
   letter-spacing: 0;
+  z-index: 3;
+  position: absolute;
+  width: inherit;
+  max-width: inherit;
 }
 
 .content-top-bar {
@@ -59,4 +63,5 @@
 
 .logout {
   margin-right: 3.2rem;
+  cursor: pointer;
 }

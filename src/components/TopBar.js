@@ -1,13 +1,13 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import "./topBar.css";
 import AdvoticsLogo from "../images/advotics-logo.png";
 import Profile from "../images/Profile.svg";
 import Logout from "../images/logout.png";
 
-const TopBar = () => {
+const TopBar = forwardRef((props, ref) => {
   return (
-    <div className="top-bar">
+    <div className="top-bar" ref={ref}>
       <div className="content-left-top-bar content-top-bar">
         <img
           src={AdvoticsLogo}
@@ -35,6 +35,6 @@ const TopBar = () => {
       </div>
     </div>
   );
-};
+});
 
 export default TopBar;
