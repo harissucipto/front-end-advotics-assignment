@@ -12,7 +12,13 @@ const Layout = ({ children }) => {
     <div className="layout">
       <TopBar ref={topBarRef} />
       <div className="layout-content">
-        <div style={{ marginTop: `${height - 2 || 0}px`, display: "flex" }}>
+        <div
+          style={{
+            marginTop: `${height - 2 || 0}px`,
+            display: "flex",
+            flex: 1
+          }}
+        >
           <MenuBarLarge />
           {children}
         </div>
