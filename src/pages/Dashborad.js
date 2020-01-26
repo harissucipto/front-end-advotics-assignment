@@ -4,6 +4,7 @@ import "./dashboard.css";
 import Layout from "../components/Layout";
 import DashBoardTitle from "../components/DashBoardTitle";
 import DashboardInsight from "../components/DashboardInsight";
+import SalesTurnOver from "../components/SalesTurnOver";
 
 const Dashborad = () => {
   return (
@@ -12,6 +13,7 @@ const Dashborad = () => {
         <div className="dashboard">
           <DashBoardTitle />
           <DashboardInsight />
+          <SalesTurnOver />
         </div>
       </Layout>
     </React.Fragment>
