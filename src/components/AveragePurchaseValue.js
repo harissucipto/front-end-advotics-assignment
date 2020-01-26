@@ -3,8 +3,54 @@ import React from "react";
 import DownArrow from "../images/arrow-down.png";
 import "./averagePurchaseValue.css";
 import ButtonMore from "./ButtonMore";
+import Diagram from "./Diagram";
 
 const AveragePurchaseValue = () => {
+  const data = [
+    {
+      id: 1,
+      label: "Jan 12",
+      jenis: "X",
+      jumlah: 23
+    },
+    {
+      id: 1,
+      label: "Jan 12",
+      jenis: "X",
+      jumlah: 23
+    },
+    {
+      id: 1,
+      label: "Jan 12",
+      jenis: "X",
+      jumlah: 23
+    },
+    {
+      id: 1,
+      label: "Jan 12",
+      jenis: "X",
+      jumlah: 23
+    },
+    {
+      id: 1,
+      label: "Jan 12",
+      jenis: "X",
+      jumlah: 23
+    },
+    {
+      id: 1,
+      label: "Jan 12",
+      jenis: "X",
+      jumlah: 23
+    },
+    {
+      id: 1,
+      label: "Jan 12",
+      jenis: "X",
+      jumlah: 23
+    }
+  ];
+
   return (
     <div className="average-purchase-container">
       <div className="container-1-center-header">
@@ -17,7 +63,9 @@ const AveragePurchaseValue = () => {
           <ButtonMore />
         </div>
       </div>
-      <div>Diagram Disini</div>
+      <div style={{ marginTop: "2.7rem" }}>
+        <Diagram data={data} />
+      </div>
     </div>
   );
 };
