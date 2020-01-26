@@ -1,6 +1,7 @@
 import React from "react";
 
 import ButtonMore from "./ButtonMore";
+import ListITem from "./ListITem";
 
 const BestSellingSKU = () => {
   return (
@@ -9,6 +10,7 @@ const BestSellingSKU = () => {
         <p className="container-2-header-title">BEST SELLING SKU</p>
         <ButtonMore />
       </div>
+      <ListITem />
     </div>
   );
 };
