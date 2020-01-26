@@ -17,10 +17,17 @@ const DashboardInsight = () => {
             textDecoration: "underline",
             fontSize: "1.4rem"
           }}
+          className="img-button"
         >
           Click Here for Help
         </p>
-        <img src={ArrowGreen} alt="ini" width={17} height={11} />
+        <img
+          src={ArrowGreen}
+          alt="ini"
+          width={17}
+          height={11}
+          className="img-button"
+        />
       </div>
     </div>
   );

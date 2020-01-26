@@ -19,12 +19,7 @@ const SalesTurnOver = () => {
         <p style={{ fontSize: "1.3rem", color: "#727272", fontWeight: "100" }}>
           Sales Turnover
         </p>
-        <img
-          src={IconMore}
-          width={10}
-          alt="more"
-          style={{ cursor: "pointer" }}
-        />
+        <img src={IconMore} width={10} alt="more" className="img-button" />
       </div>
       <div
         style={{
@@ -43,8 +38,8 @@ const SalesTurnOver = () => {
           >
             Rp 3,600,000
           </p>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <img src={ArrowDown} height={12} alt="arrow-down" />
+          <div style={{ display: "flex", alignItems: "baseline" }}>
+            <img src={ArrowDown} height={10} alt="arrow-down" />
             <p style={{ fontSize: 11 }}>
               <span
                 style={{
