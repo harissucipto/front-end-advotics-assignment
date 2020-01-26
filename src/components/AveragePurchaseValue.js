@@ -1,5 +1,6 @@
 import React from "react";
 
+import DownArrow from "../images/arrow-down.png";
 import "./averagePurchaseValue.css";
 import ButtonMore from "./ButtonMore";
 
@@ -10,7 +11,8 @@ const AveragePurchaseValue = () => {
         <p className="container-1-header-title">AVERAGE PURCHASE VALUE</p>
         <div style={{ display: "flex" }}>
           <button className="btn-average">
-            <p>Last 6 months</p>
+            <p style={{ marginRight: "5px" }}>Last 6 months</p>
+            <img src={DownArrow} width={8} height={6} alt="arrow-down" />
           </button>
           <ButtonMore />
         </div>
