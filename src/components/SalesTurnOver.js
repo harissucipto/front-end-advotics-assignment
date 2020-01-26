@@ -1,9 +1,9 @@
 import React from "react";
 
 import "./salesTurnOver.css";
-import IconMore from "../images/Icon - More - Filled.svg";
 import SalesTurnOverIcon from "../images/sales-turnover.svg";
 import ArrowDown from "../images/DownArrow.svg";
+import ButtonMore from "./ButtonMore";
 
 const SalesTurnOver = () => {
   return (
@@ -19,7 +19,7 @@ const SalesTurnOver = () => {
         <p style={{ fontSize: "1.3rem", color: "#727272", fontWeight: "100" }}>
           Sales Turnover
         </p>
-        <img src={IconMore} width={10} alt="more" className="img-button" />
+        <ButtonMore />
       </div>
       <div
         style={{

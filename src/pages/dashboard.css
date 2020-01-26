@@ -68,3 +68,52 @@
 .img-button {
   cursor: pointer;
 }
+
+.dashboard-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dashboard-content > div {
+  margin-top: 1.6rem;
+}
+
+.container-2 {
+  width: 27.5rem;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 2px 6px #0000000a;
+  border: 1px solid rgba(205, 205, 205, 0.7);
+  border-radius: 2px;
+  padding: 1.6rem;
+}
+
+.container-1-center-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: "1.6rem";
+  flex-wrap: wrap;
+}
+
+.container-1-header-title {
+  font-size: 2rem;
+  letter-spacing: 0;
+  color: #4d4f5c;
+  display: flex;
+  margin-bottom: 1.6rem;
+}
+
+.container-2-header-title {
+  font-size: 2rem;
+  letter-spacing: 0;
+  color: #4d4f5c;
+  display: flex;
+}
+
+.container-2-center-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: "1.6rem";
+  flex-wrap: wrap;
+}
