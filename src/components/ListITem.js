@@ -4,7 +4,9 @@ import ItemTop1 from "./ItemTop1";
 
 const ListITem = () => {
   const iniList = [1, 2, 3, 4, 5];
-  return iniList.map((data, index) => (index === 0 ? <ItemTop1 /> : <Item />));
+  return iniList.map((data, index) =>
+    index === 0 ? <ItemTop1 key={index} /> : <Item key={index} />
+  );
 };
 
 export default ListITem;

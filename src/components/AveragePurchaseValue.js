@@ -6,51 +6,6 @@ import ButtonMore from "./ButtonMore";
 import Diagram from "./Diagram";
 
 const AveragePurchaseValue = () => {
-  const data = [
-    {
-      id: 1,
-      label: "Jan 12",
-      jenis: "X",
-      jumlah: 23
-    },
-    {
-      id: 1,
-      label: "Jan 12",
-      jenis: "X",
-      jumlah: 23
-    },
-    {
-      id: 1,
-      label: "Jan 12",
-      jenis: "X",
-      jumlah: 23
-    },
-    {
-      id: 1,
-      label: "Jan 12",
-      jenis: "X",
-      jumlah: 23
-    },
-    {
-      id: 1,
-      label: "Jan 12",
-      jenis: "X",
-      jumlah: 23
-    },
-    {
-      id: 1,
-      label: "Jan 12",
-      jenis: "X",
-      jumlah: 23
-    },
-    {
-      id: 1,
-      label: "Jan 12",
-      jenis: "X",
-      jumlah: 23
-    }
-  ];
-
   return (
     <div className="average-purchase-container">
       <div className="container-1-center-header">
@@ -64,7 +19,7 @@ const AveragePurchaseValue = () => {
         </div>
       </div>
       <div style={{ marginTop: "2.7rem" }}>
-        <Diagram data={data} />
+        <Diagram />
       </div>
     </div>
   );

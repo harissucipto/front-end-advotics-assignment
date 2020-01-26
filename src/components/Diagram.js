@@ -100,11 +100,9 @@ const data = [
 ];
 
 export default () => {
-  console.log(data);
-
   return (
     <div style={{ textAlign: "center", display: "block" }}>
-      <ComposedChart width={520} height={320} data={data}>
+      <ComposedChart width={520} height={320} data={data} al>
         <CartesianGrid stroke="#f5f5f5" />
         <XAxis dataKey="name" padding={{ left: 30 }} />
         <YAxis />
