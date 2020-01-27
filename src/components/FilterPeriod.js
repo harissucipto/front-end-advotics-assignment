@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { DateRange } from "react-date-range";
-import { isToday, isFuture, isAfter, subDays, startOfMonth } from "date-fns";
+import {
+  isToday,
+  isFuture,
+  isAfter,
+  subDays,
+  startOfMonth,
+  subMonths
+} from "date-fns";
 
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -23,8 +30,12 @@ const FilterPeriod = ({ handleClose }) => {
     const { startDate, endDate } = data.selection;
     if (isToday(startDate) || isFuture(startDate)) return null;
     if (isToday(endDate) || isFuture(endDate)) return null;
-    setSelectionRange2(data.selection);
-    setActiveSelected("");
+    // not more than maximum 6 months
+    const lastDateMaximum = subMonths(endDate, 6);
+    if (isAfter(startDate, lastDateMaximum)) {
+      setSelectionRange2(data.selection);
+      setActiveSelected("");
+    }
   };
 
   const handleYesterday = () => {
@@ -152,6 +163,7 @@ const FilterPeriod = ({ handleClose }) => {
             ranges={[selectionRange2]}
             rangeColors={["green"]}
             disabledDates={[new Date()]}
+            moveRangeOnFirstSelection={false}
             onChange={handleSelectionRange}
           />
         </div>
