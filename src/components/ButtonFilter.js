@@ -15,7 +15,6 @@ const ButtonFilter = () => {
   const data = useStoreState(state => state.app);
   const from = format(data.dateFrom, "d MMMM yyyy");
   const to = format(data.dateTo, "d MMMM yyyy");
-  console.log(data, "ini");
 
   const handleClose = () => {
     setShowPeriod(false);
