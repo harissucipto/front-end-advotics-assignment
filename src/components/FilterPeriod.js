@@ -13,18 +13,26 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import "./filterPeriod.css";
 import IconCalender from "../images/calendar (1).png";
+import { useStoreActions } from "easy-peasy";
 
 const EVENT = ["handleYesterday", "last7days", "last30days", "thisMonth"];
 
 const FilterPeriod = ({ handleClose }) => {
-  const [dateFrom, setDateFrom] = useState(null);
-  const [dateTo, setDateTo] = useState(null);
   const [activeSelected, setActiveSelected] = useState("");
   const [selectionRange2, setSelectionRange2] = useState({
     startDate: subDays(new Date(), 1),
     endDate: subDays(new Date(), 1),
     key: "selection"
   });
+  const { setDate } = useStoreActions(actions => actions.app);
+
+  const handleApply = () => {
+    setDate({
+      dateFrom: selectionRange2.startDate,
+      dateTo: selectionRange2.endDate
+    });
+    handleClose();
+  };
 
   const handleSelectionRange = data => {
     const { startDate, endDate } = data.selection;
@@ -147,7 +155,9 @@ const FilterPeriod = ({ handleClose }) => {
             This Month
           </button>
           <button className="button-filter-range-2">Custom</button>
-          <button className="button-apply">Apply</button>
+          <button className="button-apply" onClick={handleApply}>
+            Apply
+          </button>
         </div>
         <div
           style={{
