@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Calendar } from "react-date-range";
+import { DateRange } from "react-date-range";
 import { isToday, isFuture, isAfter, subDays, startOfMonth } from "date-fns";
 
 import "react-date-range/dist/styles.css"; // main style file
@@ -13,53 +13,60 @@ const FilterPeriod = ({ handleClose }) => {
   const [dateFrom, setDateFrom] = useState(null);
   const [dateTo, setDateTo] = useState(null);
   const [activeSelected, setActiveSelected] = useState("");
-
-  const selectionRange = {
-    startDate: dateFrom,
-    endDate: dateTo,
+  const [selectionRange2, setSelectionRange2] = useState({
+    startDate: subDays(new Date(), 1),
+    endDate: subDays(new Date(), 1),
     key: "selection"
-  };
+  });
 
-  const handleSelectDate = setState => date => {
-    if (isToday(date) || isFuture(date)) return null;
-    setState(date);
+  const handleSelectionRange = data => {
+    const { startDate, endDate } = data.selection;
+    if (isToday(startDate) || isFuture(startDate)) return null;
+    if (isToday(endDate) || isFuture(endDate)) return null;
+    setSelectionRange2(data.selection);
     setActiveSelected("");
   };
 
-  const handleSetDateFrom = date => {
-    if (dateTo !== null && isAfter(date, dateTo)) return null;
-    handleSelectDate(setDateFrom)(date);
-  };
-  const handleSetDataTo = handleSelectDate(setDateTo);
-
   const handleYesterday = () => {
     const dateYesterday = subDays(new Date(), 1);
-    setDateTo(dateYesterday);
-    setDateFrom(dateYesterday);
+    setSelectionRange2({
+      startDate: dateYesterday,
+      endDate: dateYesterday,
+      key: "selection"
+    });
     setActiveSelected(EVENT[0]);
   };
 
   const handleLast7days = () => {
     const yesterday = subDays(new Date(), 1);
     const last7day = subDays(new Date(), 7);
-    setDateFrom(last7day);
-    setDateTo(yesterday);
+    setSelectionRange2({
+      startDate: last7day,
+      endDate: yesterday,
+      key: "selection"
+    });
     setActiveSelected(EVENT[1]);
   };
 
   const handleLast30days = () => {
     const yesterday = subDays(new Date(), 1);
     const last30day = subDays(new Date(), 30);
-    setDateFrom(last30day);
-    setDateTo(yesterday);
+    setSelectionRange2({
+      startDate: last30day,
+      endDate: yesterday,
+      key: "selection"
+    });
     setActiveSelected(EVENT[2]);
   };
 
   const handleThisMonth = () => {
     const yesterday = subDays(new Date(), 1);
     const firstDateOfMonth = startOfMonth(yesterday);
-    setDateFrom(firstDateOfMonth);
-    setDateTo(firstDateOfMonth);
+    setSelectionRange2({
+      startDate: firstDateOfMonth,
+      endDate: yesterday,
+      key: "selection"
+    });
     setActiveSelected(EVENT[3]);
   };
 
@@ -133,29 +140,20 @@ const FilterPeriod = ({ handleClose }) => {
         </div>
         <div
           style={{
-            flex: 1,
+            marginRight: "2rem",
             display: "flex",
-            justifyContent: "space-between",
-            padding: "1.3rem",
-            paddingTop: "1rem"
+            flex: 1,
+            backgroundColor: "red"
           }}
         >
-          <div style={{ marginRight: "2rem" }}>
-            <Calendar
-              date={dateFrom}
-              onChange={handleSetDateFrom}
-              color="green"
-              ranges={[selectionRange]}
-            />
-          </div>
-          <div>
-            <Calendar
-              date={dateTo}
-              onChange={handleSetDataTo}
-              color="green"
-              ranges={[selectionRange]}
-            />
-          </div>
+          <DateRange
+            months={2}
+            direction="horizontal"
+            ranges={[selectionRange2]}
+            rangeColors={["green"]}
+            disabledDates={[new Date()]}
+            onChange={handleSelectionRange}
+          />
         </div>
       </div>
     </div>
