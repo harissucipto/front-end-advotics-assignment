@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useDimension from "react-use-dimensions";
 
 import IconCalender from "../images/calendar (1).png";
@@ -7,12 +7,26 @@ import FilterPeriod from "./FilterPeriod";
 
 const ButtonFilter = () => {
   const [refButton, { height: heightButton }] = useDimension();
+  const [showPeriod, setShowPeriod] = useState(false);
   const from = "11 September 2018";
   const to = "14 September 2018";
 
+  const handleClose = () => {
+    setShowPeriod(false);
+  };
+
+  const handleToggle = () => {
+    setShowPeriod(!showPeriod);
+  };
+
   return (
     <div style={{ position: "relative" }}>
-      <div className="button-filter" ref={refButton}>
+      <div
+        className="button-filter"
+        ref={refButton}
+        style={{ cursor: "pointer" }}
+        onClick={handleToggle}
+      >
         <div className="button-callender">
           <img
             src={IconCalender}
@@ -27,7 +41,9 @@ const ButtonFilter = () => {
         </p>
         <img src={DownArrow} width={16} height={10} alt="arrow-down" />
       </div>
-      <FilterPeriod width={heightButton} />
+      {showPeriod && (
+        <FilterPeriod width={heightButton} handleClose={handleClose} />
+      )}
     </div>
   );
 };

@@ -6,7 +6,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import "./filterPeriod.css";
 import IconCalender from "../images/calendar (1).png";
 
-const FilterPeriod = props => {
+const FilterPeriod = ({ handleClose }) => {
   const selectionRange = {
     startDate: new Date(),
     endDate: new Date(),
@@ -34,7 +34,9 @@ const FilterPeriod = props => {
           <p style={{ fontSize: "2.3rem", color: "#8b8b8b" }}>Period</p>
         </div>
         <div>
-          <button className="btn-close">&times;</button>
+          <button className="btn-close" onClick={handleClose}>
+            &times;
+          </button>
         </div>
       </div>
       <div style={{ display: "flex" }}>
