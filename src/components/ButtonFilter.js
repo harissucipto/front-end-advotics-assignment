@@ -3,6 +3,7 @@ import useDimension from "react-use-dimensions";
 
 import IconCalender from "../images/calendar (1).png";
 import DownArrow from "../images/arrow-down.png";
+import UpArrow from "../images/arrow-up.png";
 import FilterPeriod from "./FilterPeriod";
 
 const ButtonFilter = () => {
@@ -39,7 +40,13 @@ const ButtonFilter = () => {
         <p style={{ marginRight: "1.6rem" }}>
           {from} - {to}
         </p>
-        <img src={DownArrow} width={16} height={10} alt="arrow-down" />
+
+        <img
+          src={showPeriod ? UpArrow : DownArrow}
+          width={16}
+          height={10}
+          alt="arrow-down"
+        />
       </div>
       {showPeriod && (
         <FilterPeriod width={heightButton} handleClose={handleClose} />
