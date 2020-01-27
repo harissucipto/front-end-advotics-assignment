@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Calendar } from "react-date-range";
-import { isToday, isFuture, isAfter } from "date-fns";
+import { isToday, isFuture, isAfter, subDays, startOfMonth } from "date-fns";
 
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import "./filterPeriod.css";
 import IconCalender from "../images/calendar (1).png";
+
+const EVENT = ["handleYesterday", "last7days", "last30days", "thisMonth"];
 
 const FilterPeriod = ({ handleClose }) => {
   const [dateFrom, setDateFrom] = useState(null);
@@ -21,6 +23,7 @@ const FilterPeriod = ({ handleClose }) => {
   const handleSelectDate = setState => date => {
     if (isToday(date) || isFuture(date)) return null;
     setState(date);
+    setActiveSelected("");
   };
 
   const handleSetDateFrom = date => {
@@ -28,6 +31,37 @@ const FilterPeriod = ({ handleClose }) => {
     handleSelectDate(setDateFrom)(date);
   };
   const handleSetDataTo = handleSelectDate(setDateTo);
+
+  const handleYesterday = () => {
+    const dateYesterday = subDays(new Date(), 1);
+    setDateTo(dateYesterday);
+    setDateFrom(dateYesterday);
+    setActiveSelected(EVENT[0]);
+  };
+
+  const handleLast7days = () => {
+    const yesterday = subDays(new Date(), 1);
+    const last7day = subDays(new Date(), 7);
+    setDateFrom(last7day);
+    setDateTo(yesterday);
+    setActiveSelected(EVENT[1]);
+  };
+
+  const handleLast30days = () => {
+    const yesterday = subDays(new Date(), 1);
+    const last30day = subDays(new Date(), 30);
+    setDateFrom(last30day);
+    setDateTo(yesterday);
+    setActiveSelected(EVENT[2]);
+  };
+
+  const handleThisMonth = () => {
+    const yesterday = subDays(new Date(), 1);
+    const firstDateOfMonth = startOfMonth(yesterday);
+    setDateFrom(firstDateOfMonth);
+    setDateTo(firstDateOfMonth);
+    setActiveSelected(EVENT[3]);
+  };
 
   return (
     <div className="conatainer-filter-period">
@@ -66,10 +100,34 @@ const FilterPeriod = ({ handleClose }) => {
           }}
         >
           <button className="button-filter-range">Today</button>
-          <button className="button-filter-range">Yesterday</button>
-          <button className="button-filter-range">Last 7 days</button>
-          <button className="button-filter-range">Last 30 days</button>
-          <button className="button-filter-range">This Month</button>
+          <button
+            className={`button-filter-range ${activeSelected === EVENT[0] &&
+              "selected-filter"}`}
+            onClick={handleYesterday}
+          >
+            Yesterday
+          </button>
+          <button
+            className={`button-filter-range ${activeSelected === EVENT[1] &&
+              "selected-filter"}`}
+            onClick={handleLast7days}
+          >
+            Last 7 days
+          </button>
+          <button
+            className={`button-filter-range ${activeSelected === EVENT[2] &&
+              "selected-filter"}`}
+            onClick={handleLast30days}
+          >
+            Last 30 days
+          </button>
+          <button
+            className={`button-filter-range ${activeSelected === EVENT[3] &&
+              "selected-filter"}`}
+            onClick={handleThisMonth}
+          >
+            This Month
+          </button>
           <button className="button-filter-range-2">Custom</button>
           <button className="button-apply">Apply</button>
         </div>
