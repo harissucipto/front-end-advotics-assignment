@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Calendar } from "react-date-range";
+import { isToday, isFuture, isAfter } from "date-fns";
 
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -7,11 +8,26 @@ import "./filterPeriod.css";
 import IconCalender from "../images/calendar (1).png";
 
 const FilterPeriod = ({ handleClose }) => {
+  const [dateFrom, setDateFrom] = useState(null);
+  const [dateTo, setDateTo] = useState(null);
+  const [activeSelected, setActiveSelected] = useState("");
+
   const selectionRange = {
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: dateFrom,
+    endDate: dateTo,
     key: "selection"
   };
+
+  const handleSelectDate = setState => date => {
+    if (isToday(date) || isFuture(date)) return null;
+    setState(date);
+  };
+
+  const handleSetDateFrom = date => {
+    if (dateTo !== null && isAfter(date, dateTo)) return null;
+    handleSelectDate(setDateFrom)(date);
+  };
+  const handleSetDataTo = handleSelectDate(setDateTo);
 
   return (
     <div className="conatainer-filter-period">
@@ -49,7 +65,7 @@ const FilterPeriod = ({ handleClose }) => {
             borderRight: "1px solid grey"
           }}
         >
-          <button className="button-filter-range selected-filter">Today</button>
+          <button className="button-filter-range">Today</button>
           <button className="button-filter-range">Yesterday</button>
           <button className="button-filter-range">Last 7 days</button>
           <button className="button-filter-range">Last 30 days</button>
@@ -68,13 +84,19 @@ const FilterPeriod = ({ handleClose }) => {
         >
           <div style={{ marginRight: "2rem" }}>
             <Calendar
-              date={new Date()}
-              range={[selectionRange]}
+              date={dateFrom}
+              onChange={handleSetDateFrom}
               color="green"
+              ranges={[selectionRange]}
             />
           </div>
           <div>
-            <Calendar date={new Date()} color="green" />
+            <Calendar
+              date={dateTo}
+              onChange={handleSetDataTo}
+              color="green"
+              ranges={[selectionRange]}
+            />
           </div>
         </div>
       </div>
